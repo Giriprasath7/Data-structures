@@ -1,0 +1,83 @@
+public class QueueUsingArray {
+    static final int MAX = 100;
+    static String[] queue = new String[MAX];
+    static int front = 0;
+    static int rear = -1;
+
+    void enqueue(String item) {
+        if (rear == MAX - 1) {
+            System.out.println("Queue Overflow");
+        } else {
+            rear++;
+            queue[rear] = item;
+        }
+    }
+    void dequeue() {
+        if (front > rear) {
+            System.out.println("Queue Underflow");
+            return null;
+        } else {
+            String item = queue[front];
+            front++;
+            return item;
+        }
+    }
+
+    void displayQueue() {
+        if (front > rear) {
+            System.out.println("Queue is empty");
+        } else {
+            System.out.print("[");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(queue[i]);
+                if (i < rear) System.out.print(", ");
+            }
+            System.out.println("]");
+        }
+    }
+
+    public static void main(String[] args) {
+        // Initial Queue
+        enqueue("Compiler");
+        enqueue("Firewall");
+        enqueue("Algorithm");
+        enqueue("Protocol");
+        enqueue("Cache");
+
+        System.out.println("Initial Queue:");
+        displayQueue();
+
+    
+        String dq1 = dequeue();
+        String dq2 = dequeue();
+        System.out.println("\nAfter 2 Dequeues:");
+        System.out.println("Dequeued: " + dq1 + ", " + dq2);
+        displayQueue();
+
+        enqueue("Virtualization");
+        System.out.println("\nAfter Enqueue 'Virtualization':");
+        displayQueue();
+
+        String dq3 = dequeue();
+        System.out.println("\nAfter 1 Dequeue:");
+        System.out.println("Dequeued: " + dq3);
+        displayQueue();
+
+        enqueue("Cloud");
+        System.out.println("\nAfter Enqueue 'Cloud':");
+        displayQueue();
+
+        boolean found = contains("Protocol");
+        System.out.println("\nIs 'Protocol' present? " + (found ? "Yes" : "No"));
+
+        enqueue("Machine Learning");
+        System.out.println("\nAfter Enqueue 'Machine Learning':");
+        displayQueue();
+
+        String dq4 = dequeue();
+        System.out.println("\nAfter Final Dequeue:");
+        System.out.println("Dequeued: " + dq4);
+        displayQueue();
+
+    }
+}
